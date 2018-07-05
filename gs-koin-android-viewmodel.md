@@ -130,3 +130,7 @@ You have finished this starting tutorial. Below are some topics for further read
 * [Using Android ViewModel]({{ site.baseurl }}/docs/{{ site.docs_version }}/documentation/reference/index.html#_architecture_components_with_koin_viewmodel)
 * [Shared ViewModel with Fragments]({{ site.baseurl }}/docs/{{ site.docs_version }}/documentation/reference/index.html#_shared_viewmodel)
 
+Also other Android getting started project:
+
+* [Getting started Android & Scope feature]({{ site.baseurl }}/docs/{{ site.docs_version }}/getting-started/android-scope/)
+* [Getting started Android]({{ site.baseurl }}/docs/{{ site.docs_version }}/getting-started/android/)
