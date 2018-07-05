@@ -11,7 +11,6 @@ import org.koin.sample.view.scope.MyScopeActivity
 class MySimpleActivity : AppCompatActivity() {
 
     // Lazy injected MySimplePresenter
-    //
     val firstPresenter: MySimplePresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {

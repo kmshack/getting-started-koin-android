@@ -10,6 +10,7 @@ import org.koin.sample.view.simple.MySimpleActivity
 
 class MyViewModelActivity : AppCompatActivity() {
 
+    // Lazy Inject ViewModel
     val myViewModel: MyViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
