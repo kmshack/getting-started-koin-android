@@ -8,6 +8,8 @@ toc: true
 
 ## About
 
+This tutorial lets you write an Android/Kotlin application and use Koin inject and retrieve your components with scope.
+
 ## Get the code
 
 <div class="container">
