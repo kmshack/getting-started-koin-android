@@ -71,10 +71,10 @@ Use the `module` function to declare a module. Let's declare our first component
 val appModule = module {
 
     // single instance of HelloRepository
-    single { HelloRepositoryImpl() as HelloRepository }
+    single<HelloRepository> { HelloRepositoryImpl() }
 
     // MyViewModel ViewModel
-    viewModel { MyViewModel(get()) }
+    viewModel<MyViewModel>()
 }
 {% endhighlight %}
 

@@ -71,11 +71,11 @@ Use the `module` function to declare a module. Let's declare our first component
 val appModule = module {
 
     // single instance of HelloRepository
-    single { HelloRepositoryImpl() as HelloRepository }
+    single<HelloRepository> { HelloRepositoryImpl() }
 
     // Module bound with MyScopeActivity lifecycle
     module("ScopedView") {
-        single { MyScopePresenter(get()) }
+        single<MyScopePresenter>()
     }
 }
 {% endhighlight %}

@@ -5,8 +5,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.koin.sample.view.simple.MySimplePresenter
-import org.koin.standalone.StandAloneContext.closeKoin
 import org.koin.standalone.StandAloneContext.startKoin
+import org.koin.standalone.StandAloneContext.stopKoin
 import org.koin.standalone.get
 import org.koin.standalone.inject
 import org.koin.test.KoinTest
@@ -25,7 +25,7 @@ class MySimplePresenterTest : KoinTest {
 
     @After
     fun after() {
-        closeKoin()
+        stopKoin()
     }
 
     @Test

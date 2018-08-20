@@ -70,10 +70,10 @@ Use the `module` function to declare a module. Let's declare our first component
 val appModule = module {
 
     // single instance of HelloRepository
-    single { HelloRepositoryImpl() as HelloRepository }
+    single<HelloRepository> { HelloRepositoryImpl() }
 
     // Simple Presenter Factory
-    factory { MySimplePresenter(get()) }
+    factory<MySimplePresenter>()
 }
 {% endhighlight %}
 

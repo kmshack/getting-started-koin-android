@@ -10,19 +10,20 @@ import org.koin.sample.view.viewmodel.MyViewModel
 val appModule = module {
 
     // single instance of HelloRepository
-    single { HelloRepositoryImpl() as HelloRepository }
+    // single<HelloRepository> { create<HelloRepositoryImpl>() }
+    single<HelloRepository> { HelloRepositoryImpl() }
 
     // Simple Presenter Factory
-    factory { MySimplePresenter(get()) }
+    factory<MySimplePresenter>()
 
     // Simple Java Presenter
-    factory { MyJavaPresenter(get()) }
+    factory<MyJavaPresenter>()
 
     // Module bound with MyScopeActivity lifecycle
     module("ScopedView") {
-        single { MyScopePresenter(get()) }
+        single<MyScopePresenter>()
     }
 
     // MyViewModel ViewModel
-    viewModel { MyViewModel(get()) }
+    viewModel<MyViewModel>()
 }
