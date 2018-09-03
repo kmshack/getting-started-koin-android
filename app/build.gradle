@@ -47,20 +47,12 @@ dependencies {
 
     // Android Test
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation "junit:junit:$junit_version"
-    testImplementation "org.mockito:mockito-core:$mockito_version"
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     // Koin
-//  implementation "org.koin:koin-android:$koin_version"
-//  implementation "org.koin:koin-android-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation "org.koin:koin-java:$koin_version"
-
-//    implementation "org.koin:koin-android-architecture:$koin_version"
-
 
     testImplementation "org.koin:koin-test:$koin_version"
     androidTestImplementation "org.koin:koin-test:$koin_version"
