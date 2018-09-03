@@ -74,7 +74,7 @@ val appModule = module {
     single<HelloRepository> { HelloRepositoryImpl() }
 
     // MyViewModel ViewModel
-    viewModel<MyViewModel>()
+    viewModel { MyViewModel(get()) }
 }
 {% endhighlight %}
 

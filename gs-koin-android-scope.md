@@ -73,15 +73,12 @@ val appModule = module {
     // single instance of HelloRepository
     single<HelloRepository> { HelloRepositoryImpl() }
 
-    // Module bound with MyScopeActivity lifecycle
-    module("ScopedView") {
-        single<MyScopePresenter>()
-    }
+    // Scoped MyScopePresenter instance
+    scope { MyScopePresenter(get())}
 }
 {% endhighlight %}
 
-*Note:* we declare our MyScopePresenter class as a `single` in a `module`. This mean that we will have a unique instance, until we drop it. And we will bound this module to our Activity lifecycle, to drop instances
-of this module when receiving `ON_DESTROY` lifecycle event.
+*Note:* we declare our MyScopePresenter class as a `scope` definition. This will allows us to bind a MyScopePresenter with a scope, and drop this instance with the scope closing.
 
 ## Start Koin
 
@@ -104,15 +101,15 @@ The `MyScopePresenter` component will be created with `HelloRepository` instance
 {% highlight kotlin %}
 class MyScopeActivity : AppCompatActivity() {
 
-    // lazy injected MyScopePresenter
-    val scopePresenter: MyScopePresenter by inject()
+    // inject MyScopePresenter from MyScopeActivity's scope 
+    val scopePresenter: MyScopePresenter by inject(scope = getCurrentScope())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
-
-        // on ON_DESTROY release "ScopedView" module instances
-        scopedWith("ScopedView")
+        
+        // bind MyScopeActivity's scope to component lifecycle
+        bindScope(getCurrentScope())
 
         //...
     }
@@ -121,11 +118,15 @@ class MyScopeActivity : AppCompatActivity() {
 {% endhighlight %}
 
 <div class="alert alert-secondary" role="alert">
-    The <b>by inject()</b> function allows us to retrieve Koin instances, in Android components runtime (Activity, fragment, Service...)
+    The <b>getCurrentScope()</b> allows us to retrieve scope from MyScopeActivity
+</div>
+
+<div class="alert alert-primary" role="alert">
+    The <b>by inject(scope = getCurrentScope())</b> allows us to retrieve Koin instances from the current scope
 </div>
 
 <div class="alert alert-info" role="alert">
-    The <b>scopedWith()</b> function bind Android component's lifecycle to a module
+    The <b>bindScope(getCurrentScope())</b> bind MyScopeActivity's lifecycle to its current scope. When MyScopeActivity's lifecycle ends, it will close the current session and then drop injected isntance
 </div>
 
 

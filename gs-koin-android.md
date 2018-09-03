@@ -73,7 +73,7 @@ val appModule = module {
     single<HelloRepository> { HelloRepositoryImpl() }
 
     // Simple Presenter Factory
-    factory<MySimplePresenter>()
+    factory { MySimplePresenter(get()) }
 }
 {% endhighlight %}
 
