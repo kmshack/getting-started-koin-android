@@ -6,20 +6,20 @@ import android.support.v7.app.AppCompatActivity
 import fr.ekito.myweatherapp.R
 import kotlinx.android.synthetic.main.activity_simple.*
 import org.koin.android.ext.android.inject
-import org.koin.android.scope.ext.android.scopedWith
+import org.koin.android.scope.ext.android.bindScope
+import org.koin.android.scope.ext.android.getCurrentScope
 import org.koin.sample.view.viewmodel.MyViewModelActivity
 
 class MyScopeActivity : AppCompatActivity() {
 
     // lazy injected MyScopePresenter
-    val scopePresenter: MyScopePresenter by inject()
+    val scopePresenter: MyScopePresenter by inject(scope = getCurrentScope())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
 
-        // on ON_DESTROY release "ScopedView" module instances
-        scopedWith("ScopedView")
+        bindScope(getCurrentScope())
 
         title = "MyScopeActivity"
         text.text = scopePresenter.sayHello()

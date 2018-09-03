@@ -8,22 +8,18 @@ import org.koin.sample.view.simple.MySimplePresenter
 import org.koin.sample.view.viewmodel.MyViewModel
 
 val appModule = module {
-
     // single instance of HelloRepository
-    // single<HelloRepository> { create<HelloRepositoryImpl>() }
     single<HelloRepository> { HelloRepositoryImpl() }
 
     // Simple Presenter Factory
-    factory<MySimplePresenter>()
+    factory { MySimplePresenter(get()) }
 
     // Simple Java Presenter
-    factory<MyJavaPresenter>()
+    factory { MyJavaPresenter(get()) }
 
-    // Module bound with MyScopeActivity lifecycle
-    module("ScopedView") {
-        single<MyScopePresenter>()
-    }
+    // Scoped instance
+    scope { MyScopePresenter(get()) }
 
     // MyViewModel ViewModel
-    viewModel<MyViewModel>()
+    viewModel { MyViewModel(get()) }
 }
