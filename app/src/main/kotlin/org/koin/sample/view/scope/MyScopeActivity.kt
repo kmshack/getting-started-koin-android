@@ -7,19 +7,20 @@ import fr.ekito.myweatherapp.R
 import kotlinx.android.synthetic.main.activity_simple.*
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.ext.android.bindScope
-import org.koin.android.scope.ext.android.getCurrentScope
+import org.koin.android.scope.ext.android.createScope
+import org.koin.android.scope.ext.android.getOrCreateScope
 import org.koin.sample.view.viewmodel.MyViewModelActivity
 
 class MyScopeActivity : AppCompatActivity() {
 
     // lazy injected MyScopePresenter
-    val scopePresenter: MyScopePresenter by inject(scope = getCurrentScope())
+    val scopePresenter: MyScopePresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
 
-        bindScope(getCurrentScope())
+        bindScope(getOrCreateScope("session"))
 
         title = "MyScopeActivity"
         text.text = scopePresenter.sayHello()

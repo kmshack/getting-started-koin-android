@@ -18,7 +18,7 @@ val appModule = module {
     factory { MyJavaPresenter(get()) }
 
     // Scoped instance
-    scope { MyScopePresenter(get()) }
+    scope("session") { MyScopePresenter(get()) }
 
     // MyViewModel ViewModel
     viewModel { MyViewModel(get()) }

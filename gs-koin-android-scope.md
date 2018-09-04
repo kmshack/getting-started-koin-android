@@ -74,7 +74,7 @@ val appModule = module {
     single<HelloRepository> { HelloRepositoryImpl() }
 
     // Scoped MyScopePresenter instance
-    scope { MyScopePresenter(get())}
+    scope("session") { MyScopePresenter(get())}
 }
 {% endhighlight %}
 
@@ -101,15 +101,15 @@ The `MyScopePresenter` component will be created with `HelloRepository` instance
 {% highlight kotlin %}
 class MyScopeActivity : AppCompatActivity() {
 
-    // inject MyScopePresenter from MyScopeActivity's scope 
-    val scopePresenter: MyScopePresenter by inject(scope = getCurrentScope())
+    // inject MyScopePresenter from "session" scope 
+    val scopePresenter: MyScopePresenter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
         
-        // bind MyScopeActivity's scope to component lifecycle
-        bindScope(getCurrentScope())
+        // bind "session" scope to component lifecycle
+        bindScope(getOrCreateScope("session"))
 
         //...
     }
@@ -117,18 +117,13 @@ class MyScopeActivity : AppCompatActivity() {
 
 {% endhighlight %}
 
-<div class="alert alert-secondary" role="alert">
-    The <b>getCurrentScope()</b> allows us to retrieve scope from MyScopeActivity
-</div>
-
 <div class="alert alert-primary" role="alert">
-    The <b>by inject(scope = getCurrentScope())</b> allows us to retrieve Koin instances from the current scope
+    The <b>getOrCreateScope(...)</b> allows us to create or retrieve scope
 </div>
 
 <div class="alert alert-info" role="alert">
-    The <b>bindScope(getCurrentScope())</b> bind MyScopeActivity's lifecycle to its current scope. When MyScopeActivity's lifecycle ends, it will close the current session and then drop injected isntance
+    The <b>bindScope(...)</b> bind given scope to current lifecycle. When MyScopeActivity's lifecycle ends, it will close the associated scope and then drop injected isntance
 </div>
-
 
 ## What's Next?
 
