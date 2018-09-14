@@ -48,9 +48,12 @@ dependencies {
     // Android Test
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 
-    // Kotlin
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     // Koin
+    // Koin for Android
+//    implementation "org.koin:koin-android:$koin_version"
+    // Koin for Android Scope feature
+//    implementation "org.koin:koin-android-scope:$koin_version"
+    // Koin for Android - ViewModel features
     implementation "org.koin:koin-android-viewmodel:$koin_version"
     implementation "org.koin:koin-java:$koin_version"
 
