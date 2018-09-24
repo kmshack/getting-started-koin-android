@@ -1,7 +1,7 @@
 ext {
     // Kotlin
     kotlin_version = '1.2.70'
-    koin_version = '1.0.0'
+    koin_version = '1.0.1'
 
     // Android Sdk and tools
     minSdkVersion = 14
