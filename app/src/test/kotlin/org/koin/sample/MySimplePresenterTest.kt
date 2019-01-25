@@ -4,13 +4,13 @@ import org.junit.After
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.sample.view.simple.MySimplePresenter
-import org.koin.standalone.StandAloneContext.startKoin
-import org.koin.standalone.StandAloneContext.stopKoin
-import org.koin.standalone.get
-import org.koin.standalone.inject
 import org.koin.test.KoinTest
-import org.koin.test.declareMock
+import org.koin.test.get
+import org.koin.test.inject
+import org.koin.test.mock.declareMock
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 
@@ -20,7 +20,10 @@ class MySimplePresenterTest : KoinTest {
 
     @Before
     fun before() {
-        startKoin(listOf(appModule))
+        startKoin {
+            logger()
+            modules(appModule)
+        }
     }
 
     @After

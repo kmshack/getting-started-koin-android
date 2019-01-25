@@ -15,7 +15,7 @@ import org.koin.sample.view.simple.MySimplePresenter;
 import fr.ekito.myweatherapp.R;
 import kotlin.Lazy;
 
-import static org.koin.java.standalone.KoinJavaComponent.inject;
+import static org.koin.java.KoinJavaComponent.inject;
 
 public class JavaActivity extends AppCompatActivity {
 
