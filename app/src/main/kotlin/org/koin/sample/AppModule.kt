@@ -1,7 +1,7 @@
 package org.koin.sample
 
-import org.koin.android.scope.scope
 import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.sample.view.java.MyJavaPresenter
 import org.koin.sample.view.scope.MyScopeActivity
@@ -20,7 +20,7 @@ val appModule = module {
     factory { MyJavaPresenter(get()) }
 
     // scope for MyScopeActivity
-    scope<MyScopeActivity> {
+    scope(named<MyScopeActivity>()) {
         // scoped MyScopePresenter instance
         scoped { MyScopePresenter(get()) }
     }

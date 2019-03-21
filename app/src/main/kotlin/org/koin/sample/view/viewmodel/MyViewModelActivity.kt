@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import fr.ekito.myweatherapp.R
 import kotlinx.android.synthetic.main.activity_simple.*
-import org.koin.android.viewmodel.ext.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.sample.view.java.JavaActivity
 
 class MyViewModelActivity : AppCompatActivity() {

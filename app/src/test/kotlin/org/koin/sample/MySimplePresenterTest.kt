@@ -21,7 +21,7 @@ class MySimplePresenterTest : KoinTest {
     @Before
     fun before() {
         startKoin {
-            logger()
+            printLogger()
             modules(appModule)
         }
     }
