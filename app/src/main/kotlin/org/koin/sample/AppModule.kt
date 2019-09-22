@@ -3,28 +3,24 @@ package org.koin.sample
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.koin.sample.view.java.MyJavaPresenter
-import org.koin.sample.view.scope.MyScopeActivity
-import org.koin.sample.view.scope.MyScopePresenter
-import org.koin.sample.view.simple.MySimplePresenter
 import org.koin.sample.view.viewmodel.MyViewModel
+import org.koin.sample.view.viewmodel.MyViewModelActivity
+import org.koin.sample.view.viewmodel.UseCaseA
+import org.koin.sample.view.viewmodel.UseCaseB
 
 val appModule = module {
+
     // single instance of HelloRepository
-    single<HelloRepository> { HelloRepositoryImpl() }
+    factory<HelloRepository> { HelloRepositoryImpl() }
 
-    // Simple Presenter Factory
-    factory { MySimplePresenter(get()) }
-
-    // Simple Java Presenter
-    factory { MyJavaPresenter(get()) }
-
-    // scope for MyScopeActivity
-    scope(named<MyScopeActivity>()) {
+    scope(named<MyViewModelActivity>()) {
         // scoped MyScopePresenter instance
-        scoped { MyScopePresenter(get()) }
+        scoped<HelloRepository> { HelloRepositoryImpl() }
     }
 
+    factory { UseCaseA(get()) }
+    factory { UseCaseB(get()) }
+
     // MyViewModel ViewModel
-    viewModel { MyViewModel(get()) }
+    viewModel { MyViewModel(get(), get()) }
 }
